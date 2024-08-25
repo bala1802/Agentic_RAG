@@ -5,7 +5,11 @@ GitHub: https://github.com/bala1802
 
 from langchain_openai import ChatOpenAI
 import os
-import config
+
+from config import OPENAI_API_BASE
+from config import LLM_MAX_TOKENS
+from config import MODEL_NAME
+from config import LLM_TEMPERATURE
 
 """
 Initializes and configures an instance of the ChatOpenAI language model.
@@ -22,11 +26,11 @@ def initialize_llm() -> ChatOpenAI:
     """
 
     llm = ChatOpenAI(
-        openai_api_base=config.OPENAI_API_BASE,
+        openai_api_base=OPENAI_API_BASE,
         openai_api_key=os.environ['GROQ_API_KEY'],
-        model_name=config.MODEL_NAME,
-        temperature=config.LLM_TEMPERATURE,
-        max_tokens=config.LLM_MAX_TOKENS,
+        model_name=MODEL_NAME,
+        temperature=LLM_TEMPERATURE,
+        max_tokens=LLM_MAX_TOKENS,
     )
 
     return llm
