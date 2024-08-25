@@ -6,6 +6,8 @@ GitHub: https://github.com/bala1802
 from crewai import Agent
 from langchain_openai import ChatOpenAI
 
+import prompts as prompts
+
 """
 Initializes a Router Agent responsible for directing user questions to the appropriate service.
 
@@ -29,12 +31,8 @@ def initialize_router_agent(llm: ChatOpenAI):
 
     Router_Agent = Agent(
         role='Router',
-        goal='Route user question to a vectorstore or web search',
-        backstory=(
-            "You are an expert at routing a user question to a vectorstore or web search."
-            "Use the vectorstore for questions on concept related to Retrieval-Augmented Generation."
-            "You do not need to be stringent with the keywords in the question related to these topics. Otherwise, use web-search."
-        ),
+        goal=prompts.router_agent_goal,
+        backstory=(prompts.router_agent_backstory),
         verbose=True,
         allow_delegation=False,
         llm=llm,
@@ -65,12 +63,8 @@ def initialize_retriever_agent(llm: ChatOpenAI):
     """
     Retriever_Agent = Agent(
         role="Retriever",
-        goal="Use the information retrieved from the vectorstore to answer the question",
-        backstory=(
-            "You are an assistant for question-answering tasks."
-            "Use the information present in the retrieved context to answer the question."
-            "You have to provide a clear concise answer."
-        ),
+        goal=prompts.retreiver_agent_goal,
+        backstory=(prompts.router_agent_backstory),
         verbose=True,
         allow_delegation=False,
         llm=llm,
@@ -103,12 +97,8 @@ def initialize_grader_agent(llm: ChatOpenAI):
     """
     Grader_Agent =  Agent(
         role='Answer Grader',
-        goal='Filter out erroneous retrievals',
-        backstory=(
-            "You are a grader assessing relevance of a retrieved document to a user question."
-            "If the document contains keywords related to the user question, grade it as relevant."
-            "It does not need to be a stringent test.You have to make sure that the answer is relevant to the question."
-        ),
+        goal=prompts.grader_agent_goal,
+        backstory=(prompts.grader_agent_backstory),
         verbose=True,
         allow_delegation=False,
         llm=llm,
@@ -143,11 +133,8 @@ def initialize_hallucination_grader_agent(llm: ChatOpenAI):
 
     Hallucination_Grader_Agent = Agent(
         role="Hallucination Grader",
-        goal="Filter out hallucination",
-        backstory=(
-            "You are a hallucination grader assessing whether an answer is grounded in / supported by a set of facts."
-            "Make sure you meticulously review the answer and check if the response provided is in alignmnet with the question asked"
-        ),
+        goal=prompts.hallucination_grader_agent_goal,
+        backstory=(prompts.hallucination_grader_agent_backstory),
         verbose=True,
         allow_delegation=False,
         llm=llm,
@@ -181,13 +168,8 @@ def initialize_answer_grader_agent(llm: ChatOpenAI):
     """
     Answer_Grader_Agent = Agent(
         role="Answer Grader",
-        goal="Filter out hallucination from the answer.",
-        backstory=(
-            "You are a grader assessing whether an answer is useful to resolve a question."
-            "Make sure you meticulously review the answer and check if it makes sense for the question asked"
-            "If the answer is relevant generate a clear and concise response."
-            "If the answer gnerated is not relevant then perform a websearch using 'web_search_tool'"
-        ),
+        goal=prompts.answer_grader_agent_goal,
+        backstory=(prompts.answer_grader_agent_backstory),
         verbose=True,
         allow_delegation=False,
         llm=llm,
