@@ -25,4 +25,11 @@ Agentic AI systems are engineered to tackle complex problems with minimal human 
 
 ```
 
+## Configure API Keys
+
+### Groq
+
+A high-performance computing platform that accelerates AI workloads, making it ideal for handling the complex computations involved in RAG systems.
+
+Create API Key: https://console.groq.com/keys
 
