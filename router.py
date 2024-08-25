@@ -23,7 +23,7 @@ def router_tool(question):
     Returns:
         str: The name of the tool to be used ('vectorstore' or 'web_search').
   """
-  if 'hindi' in question or 'marathi' in question:
+  if 'hindi' in question.lower() or 'marathi' in question.lower():
     return 'vectorstore'
   else:
     return 'web_search'
