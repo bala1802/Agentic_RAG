@@ -33,3 +33,11 @@ A high-performance computing platform that accelerates AI workloads, making it i
 
 Create API Key: https://console.groq.com/keys
 
+#### `config.py`
+
+```
+GROQ_API_KEY = "<GROQ_API_KEY>"
+```
+
+
+
