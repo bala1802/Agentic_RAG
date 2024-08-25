@@ -1,4 +1,4 @@
-# Agentic_RAG
+# Agentic RAG
 
 Explored implementing the Agentic Retrieval-Augmented Generation (RAG) design pattern using LangChain, Groq, and CrewAI. This approach leverages multiple AI agents working together to enhance the efficiency and accuracy of information retrieval and generation processes.
 
