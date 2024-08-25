@@ -36,7 +36,19 @@ Create API Key: https://console.groq.com/keys
 #### `config.py`
 
 ```
-GROQ_API_KEY = "<GROQ_API_KEY>"
+GROQ_API_KEY = <GROQ_API_KEY>
+```
+
+### Tavily
+
+Tavily is used for decentralized management and coordination of AI agents in multi-agent systems.
+
+Create API Key: https://app.tavily.com/home
+
+#### `config.py`
+
+```
+TAVILY_API_KEY = <TAVILY_API_KEY>
 ```
 
 
