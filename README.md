@@ -51,5 +51,15 @@ Create API Key: https://app.tavily.com/home
 TAVILY_API_KEY = <TAVILY_API_KEY>
 ```
 
+## Agents `agents.py`
+
+This script holds the repository of agents required to solve the problem statement.
+
+- `Router Agent`: Responsible for navigating the user query to either a vector store or web search based on relevance.
+- `Retreiver Agent`: Resposnible for retrieving relevant information from the vector store to answer the user's question.
+- `Grader Agent`: Responsible for evaluating the relevance of the retrieved documents to the user's question and filter out irrelevant ones.
+- `Answer Grader Agent`: Responsible for assessing the final answer to ensure it is free from hallucinations.
+- `Hallucination Grader Agent`: Responsible for identifying and filtering out any hallucinated or unsupported information in the answer.
+
 
 
